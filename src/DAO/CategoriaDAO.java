@@ -75,22 +75,36 @@ public class CategoriaDAO {
         }
     }
 
-    public CategoriaModel obterNomePorPK(int pk) {
+    public ArrayList<CategoriaModel> obterPorAtividade(int at) {
         try {
-            String sql = "SELECT * FROM categorias WHERE id = ?";
+            String sql = "SELECT * FROM categorias where atividade = ?";
             Connection conn = conexãoSingleton.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, pk);
+            stmt.setInt(1, at);
             ResultSet rs = stmt.executeQuery();
-            CategoriaModel c = new CategoriaModel();
-            while (rs.next()) {
-                c.setNome(rs.getString("nome"));
-            }
-            return c;
+
+            return montaCategoria(rs);
         } catch (SQLException ex) {
             ex.getStackTrace();
-            System.out.println("Erro ao buscar o categoria número " + pk);
+            System.out.println("Erro ao buscar categorias.");
+            return null;
+        }
+    }
+
+    public ArrayList<CategoriaModel> obterPorNome(String nome) {
+        try {
+            String sql = "SELECT * FROM categorias where nome like ?";
+            Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, "%" + nome + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            return montaCategoria(rs);
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao buscar categorias.");
             return null;
         }
     }

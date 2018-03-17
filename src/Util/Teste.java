@@ -10,11 +10,13 @@ import DAO.ClienteDAO;
 import DAO.FuncionarioDAO;
 import DAO.IngredienteDAO;
 import DAO.ProdutoDAO;
+import DAO.UsuarioDAO;
 import Model.CategoriaModel;
 import Model.ClienteModel;
 import Model.FuncionarioModel;
 import Model.IngredienteModel;
 import Model.ProdutoModel;
+import Model.UsuarioModel;
 
 /**
  *
@@ -83,25 +85,36 @@ public class Teste {
 //        for(CategoriaModel cat : cad.obterTodos()){
 //            System.out.println(cat.toString());
 //        }
-        ProdutoModel p = new ProdutoModel();
-        p.setDescricao("Fanta Laranja 350ml");
-
-        CategoriaModel c = new CategoriaModel();
-        c.setId(2);
-        
-        p.setId_categoria(c);
-        p.setQuantidade(2);
-        p.setValor((float)3.50);
-        p.setAtividade(true);
-        
-        ProdutoDAO pd = new ProdutoDAO();
-        pd.inserir(p);
+//        ProdutoModel p = new ProdutoModel();
+//        p.setDescricao("Fanta Laranja 350ml");
+//
+//        CategoriaModel c = new CategoriaModel();
+//        c.setId(2);
 //        
-        for(ProdutoModel pt : pd.obterTodos()){
-            System.out.println("----------------------");
-            System.out.println("-- Produtos --");
-            System.out.println(pt.toString());
-        }
+//        p.setCategoria(c);
+//        p.setQuantidade(2);
+//        p.setValor((float)3.50);
+//        p.setAtividade(true);
+//        
+//        ProdutoDAO pd = new ProdutoDAO();
+//        pd.inserir(p);
+////        
+//        for(ProdutoModel pt : pd.obterTodos()){
+//            System.out.println("----------------------");
+//            System.out.println("-- Produtos --");
+//            System.out.println(pt.toString());
+//        }
+        
+        UsuarioModel us = new UsuarioModel();
+        us.setId(0);
+        us.setUsuario("robson");
+        us.setSenha("catuaba");
+        
+        UsuarioDAO userDAO = new UsuarioDAO();
+        userDAO.inserir(us);
+/*        for (UsuarioModel usuario : userDAO.obterTodos()) {
+            System.out.println(usuario.toString());
+        }*/
         
 
     }

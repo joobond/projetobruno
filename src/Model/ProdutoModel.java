@@ -14,7 +14,7 @@ import Controller.ProdutoController;
 public class ProdutoModel {
     private int id;
     private String descricao;
-    private CategoriaModel id_categoria;
+    private CategoriaModel categoria;
     private int quantidade;
     private float valor;
     private boolean atividade;
@@ -35,12 +35,12 @@ public class ProdutoModel {
         this.descricao = descricao;
     }
 
-    public CategoriaModel getId_categoria() {
-        return id_categoria;
+    public CategoriaModel getCategoria() {
+        return categoria;
     }
 
-    public void setId_categoria(CategoriaModel id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setCategoria(CategoriaModel categoria) {
+        this.categoria = categoria;
     }
 
     public int getQuantidade() {
@@ -69,7 +69,7 @@ public class ProdutoModel {
     
     @Override
     public String toString(){
-        return "ID: "+this.getId()+" \nDescrição: "+this.getDescricao()+" \nCategoria: "+this.getId_categoria().getNome()+" "
+        return "ID: "+this.getId()+" \nDescrição: "+this.getDescricao()+" \nCategoria: "+this.getCategoria().getNome()+" "
                 + "\nQuantidade: "+this.getQuantidade()+" \nValor: R$ "+this.getValor()+" "
                 + "\nAtividade: "+ProdutoController.getAtividade(this);
     }

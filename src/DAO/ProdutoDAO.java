@@ -28,7 +28,7 @@ public class ProdutoDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             
             stmt.setString(1, p.getDescricao());
-            stmt.setInt(2, p.getId_categoria().getId());
+            stmt.setInt(2, p.getCategoria().getId());
             stmt.setInt(3, p.getQuantidade());
             stmt.setFloat(4, p.getValor());
             stmt.setBoolean(5, p.isAtividade());
@@ -116,7 +116,7 @@ public class ProdutoDAO {
             c.setNome(rs.getString("nome"));
             p.setId(rs.getInt("id"));
             p.setDescricao(rs.getString("descricao"));
-            p.setId_categoria(c);
+            p.setCategoria(c);
             p.setQuantidade(rs.getInt("quantidade"));
             p.setValor(rs.getFloat("valor"));
             p.setAtividade(rs.getBoolean("atividade"));
