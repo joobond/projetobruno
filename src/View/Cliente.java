@@ -29,6 +29,8 @@ public class Cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jlNome = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
@@ -46,6 +48,10 @@ public class Cliente extends javax.swing.JFrame {
         jftfTelefone = new javax.swing.JFormattedTextField();
         jbCadastrar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -260,6 +266,8 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbCadastrar;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JComboBox jcbAtividade;
