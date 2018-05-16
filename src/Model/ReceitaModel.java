@@ -15,4 +15,30 @@ public class ReceitaModel {
     private int id;
     private String nome;
     private ArrayList<IngredienteModel> ingredientes;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public ArrayList<IngredienteModel> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(ArrayList<IngredienteModel> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+    
+    
 }

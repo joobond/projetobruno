@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,6 +39,19 @@ public class ProdutoDAO {
         } catch (SQLException ex) {
             ex.getStackTrace();
             System.out.println("Erro ao cadastrar produto.");
+        }
+    }
+    
+    public void adicionarReceita(int id_receita) {
+        try {
+            String sql = "UPDATE produtos SET id_receita = ?";
+            
+            PreparedStatement stmt = conexãoSingleton.getConnection().prepareStatement(sql);
+            stmt.setInt(1, id_receita);
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Erro ao adicionar uma receita ao produto");
         }
     }
     
