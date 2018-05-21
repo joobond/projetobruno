@@ -139,4 +139,24 @@ public class ProdutoDAO {
         }
         return retorno;
     }
+    public void atualizar(ProdutoModel p) {
+       String sql = "UPDATE produtos SET descricao=?,id_categoria=?,quantidade=?,valor=?,atividade=? WHERE id=?";
+
+       try {
+          Connection conn = conexãoSingleton.getConnection();
+           PreparedStatement stmt = conn.prepareStatement(sql);
+           
+           stmt.setString(1, p.getDescricao());
+           stmt.setInt(2, p.getCategoria().getId());
+           stmt.setInt(3, p.getQuantidade());
+           stmt.setFloat(4, p.getValor());
+           stmt.setBoolean(5, p.isAtividade());
+           stmt.setInt(6, p.getId());
+           
+           stmt.execute();
+       } catch (SQLException ex) {
+           ex.getStackTrace();
+           System.out.println("Erro ao atualizar produto.");
+       }
+   }
 }
