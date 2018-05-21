@@ -47,6 +47,7 @@ public class IngredienteDAO {
             ResultSet rs = stmt.executeQuery();
             
             return montaIngrediente(rs);
+            
         } catch (SQLException ex) {
             ex.getStackTrace();
             System.out.println("Erro ao buscar ingredientes.");
@@ -103,7 +104,7 @@ public class IngredienteDAO {
         while (rs.next()) {
             IngredienteModel i = new IngredienteModel();
             i.setId(rs.getInt("id"));
-            i.setNome(rs.getString("nome"));
+            i.setNome(rs.getString("descricao"));
             i.setQuantidade(rs.getFloat("quantidade"));
             i.setData_ultima_compra(rs.getString("data_ultima_compra"));
             i.setValor_ultima_compra(rs.getFloat("valor_ultima_compra"));
