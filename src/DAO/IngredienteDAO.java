@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.IngredienteModel;
+import Model.ProdutoModel;
 import Util.conexãoSingleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -112,4 +113,23 @@ public class IngredienteDAO {
         }
         return retorno;
     }
+    public void atualizar(IngredienteModel i) {
+       String sql = "UPDATE ingredientes SET nome=?,quantidade=?,data_ultima_compra=?,valor_ultima_compra=? WHERE id=?";
+
+       try {
+            Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, i.getNome());
+            stmt.setFloat(2, i.getQuantidade());
+            stmt.setString(3,i.getData_ultima_compra());
+            stmt.setFloat(4, i.getValor_ultima_compra());
+            stmt.setInt(5, i.getId());
+            
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao atualizar ingrediente.");
+        }
+   }
 }
