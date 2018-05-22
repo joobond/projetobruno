@@ -114,4 +114,24 @@ public class ClienteDAO {
         }
         return retorno;
     }
+    public void atualizar(ClienteModel c) {
+       String sql = "UPDATE clientes SET nome_completo=?,data_nascimento=?,pontos=?,atividade=?,telefone=? WHERE id=?";
+
+       try {
+          Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, c.getNome_completo());
+            stmt.setString(2, c.getData_nascimento());
+            stmt.setInt(3, c.getPontos());
+            stmt.setBoolean(4, c.isAtividade());
+            stmt.setInt(5, c.getTelefone());
+            stmt.setInt(6, c.getId());
+            
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao atualizar cliente.");
+        }
+   }
 }
