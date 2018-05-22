@@ -6,7 +6,10 @@
 package View;
 
 import Controller.IngredienteController;
+import Controller.ReceitaController;
 import Model.IngredienteModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NovaReceita extends javax.swing.JFrame {
     IngredienteController controller;
+    ReceitaController receitaController;
     
     /**
      * Creates new form NovaCategoria
@@ -22,6 +26,7 @@ public class NovaReceita extends javax.swing.JFrame {
     public NovaReceita() {
         initComponents();
         this.controller = new IngredienteController();
+        this.receitaController = new ReceitaController();
     }
     
     public void buscarIngredientes() {
@@ -36,6 +41,46 @@ public class NovaReceita extends javax.swing.JFrame {
         Object[] values = {i.getId(), i.getNome(), txtQtd.getText()};
         tb.addRow(values);
     }
+    
+    public void removeSelectedRow() {
+        DefaultTableModel tb = (DefaultTableModel) tbIngredientes.getModel();
+        int row = tbIngredientes.getSelectedRow();
+        if(row > -1)
+            tb.removeRow(row);
+        else
+            System.out.println("Selecione uma linha");
+    }
+    
+    public void saveIngredientes(String receitaNome) {
+        ArrayList<IngredienteModel> ingredientes = new ArrayList<>();
+        
+        int linhas = tbIngredientes.getRowCount();
+        if(receitaNome.isEmpty())
+            JOptionPane.showMessageDialog(null,"Nome de receita necessário!");
+        else {
+            if(linhas < 1)
+                JOptionPane.showMessageDialog(null, "Não pode finalizar sem ingredientes!");
+            else {
+                for(int i = 0; i < linhas; i++) {
+                    int idIngrediente = Integer.parseInt(tbIngredientes.getValueAt(i, 0).toString());
+                    float quantidade = Float.parseFloat(tbIngredientes.getValueAt(i, 2).toString());
+                    IngredienteModel ingrediente = new IngredienteModel();
+                    ingrediente.setId(idIngrediente);
+                    ingrediente.setQuantidade(quantidade);
+                    
+                    ingredientes.add(ingrediente);
+                }
+                
+                if(this.receitaController.addReceita(receitaNome, ingredientes)) {
+                    JOptionPane.showMessageDialog(null, "Receita cadastrada!");
+                    this.dispose();
+                }                    
+                else
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar receita");
+            }
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +94,7 @@ public class NovaReceita extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nomeReceita = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         cbIngredientes = new javax.swing.JComboBox();
         txtQtd = new javax.swing.JTextField();
@@ -59,6 +104,7 @@ public class NovaReceita extends javax.swing.JFrame {
         tbIngredientes = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -157,8 +203,25 @@ public class NovaReceita extends javax.swing.JFrame {
         }
 
         jButton2.setText("Finalizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Deletar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +233,7 @@ public class NovaReceita extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(nomeReceita)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -178,6 +241,8 @@ public class NovaReceita extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -191,7 +256,7 @@ public class NovaReceita extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomeReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,7 +264,8 @@ public class NovaReceita extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -215,6 +281,18 @@ public class NovaReceita extends javax.swing.JFrame {
         this.populateTable(i);
         txtQtd.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.removeSelectedRow();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.saveIngredientes(nomeReceita.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,13 +335,14 @@ public class NovaReceita extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nomeReceita;
     private javax.swing.JTable tbIngredientes;
     private javax.swing.JTextField txtQtd;
     // End of variables declaration//GEN-END:variables
