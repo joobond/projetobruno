@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.CategoriaModel;
+import Model.ClienteModel;
 import Util.conexãoSingleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,4 +142,23 @@ public class CategoriaDAO {
         }
         return retorno;
     }
+    
+    public void atualizar(CategoriaModel c) {
+       String sql = "UPDATE categorias SET nome=?,atividade=? WHERE id=?";
+
+       try {
+            Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, c.getNome());
+            stmt.setBoolean(2, c.isAtividade());
+            stmt.setInt(3, c.getId());
+
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao atualizar categoria.");
+        }
+   }
 }
+

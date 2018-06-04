@@ -17,6 +17,8 @@ public class FuncionarioModel {
     private String cpf;
     private int telefone;
     private float salario;
+    private String email;
+    private String senha;
 
     public int getId() {
         return id;
@@ -65,10 +67,27 @@ public class FuncionarioModel {
     public void setSalario(float salario) {
         this.salario = salario;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     
      @Override
     public String toString(){
         return "ID: "+this.getId()+" \nNome: "+this.getNome_completo()+" \nData Nascimento: "+this.getData_nascimento()+" \n"
-                + "CPF: "+this.getCpf()+" \nSalário: R$ "+this.getSalario()+" \nTelefone: "+this.getTelefone();
+                + "CPF: "+this.getCpf()+" \nSalário: R$ "+this.getSalario()+" \nTelefone: "+this.getTelefone()+" \nEmail: "+this.getEmail();
     }
 }
