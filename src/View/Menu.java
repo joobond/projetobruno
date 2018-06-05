@@ -31,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jbRelatorio1 = new javax.swing.JButton();
         jpPainel1 = new javax.swing.JPanel();
         jbCliente = new javax.swing.JButton();
         jbFuncionario = new javax.swing.JButton();
@@ -41,6 +42,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmSair = new javax.swing.JMenu();
+
+        jbRelatorio1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/botão Relatório.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -54,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/botão Funcionario.png"))); // NOI18N
+        jbFuncionario.setText("Colocar Receita");
         jbFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbFuncionarioActionPerformed(evt);
@@ -204,6 +207,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jbFuncionario;
     private javax.swing.JButton jbProduto;
     private javax.swing.JButton jbRelatorio;
+    private javax.swing.JButton jbRelatorio1;
     private javax.swing.JLabel jlLanchonet;
     private javax.swing.JMenu jmSair;
     private javax.swing.JPanel jpPainel1;
