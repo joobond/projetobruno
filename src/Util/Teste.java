@@ -10,7 +10,6 @@ import DAO.ClienteDAO;
 import DAO.FuncionarioDAO;
 import DAO.IngredienteDAO;
 import DAO.ProdutoDAO;
-import DAO.UsuarioDAO;
 import Model.CategoriaModel;
 import Model.ClienteModel;
 import Model.FuncionarioModel;
@@ -105,13 +104,7 @@ public class Teste {
 //            System.out.println(pt.toString());
 //        }
         
-        UsuarioModel us = new UsuarioModel();
-        us.setId(0);
-        us.setUsuario("robson");
-        us.setSenha("catuaba");
-        
-        UsuarioDAO userDAO = new UsuarioDAO();
-        userDAO.inserir(us);
+       
 /*        for (UsuarioModel usuario : userDAO.obterTodos()) {
             System.out.println(usuario.toString());
         }*/

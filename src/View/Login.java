@@ -5,8 +5,9 @@
  */
 package View;
 
-import DAO.UsuarioDAO;
-import Model.UsuarioModel;
+
+import DAO.FuncionarioDAO;
+import Model.FuncionarioModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -148,10 +149,10 @@ public class Login extends javax.swing.JFrame {
 
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         boolean autenticacao = false;
-        UsuarioDAO userDAO = new UsuarioDAO();
+        FuncionarioDAO funcDAO = new FuncionarioDAO();
         
-        for (UsuarioModel usuario : userDAO.obterTodos()) {
-            if (usuario.getUsuario().equals(jtfUser.getText()) && usuario.getSenha().equals(jpfSenha.getText())) {
+        for (FuncionarioModel funcionario : funcDAO.obterTodos()) {
+            if (funcionario.getEmail().equals(jtfUser.getText()) && funcionario.getSenha().equals(jpfSenha.getText())) {
                 autenticacao = true;
             }
         }
