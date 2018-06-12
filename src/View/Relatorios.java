@@ -39,8 +39,7 @@ public class Relatorios extends javax.swing.JFrame {
 
         jlLanchonet.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jlLanchonet.setForeground(new java.awt.Color(255, 255, 255));
-        jlLanchonet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lanchonet.png"))); // NOI18N
-        jlLanchonet.setText("Relatório");
+        jlLanchonet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/relatorio.png"))); // NOI18N
 
         javax.swing.GroupLayout jpPainel2Layout = new javax.swing.GroupLayout(jpPainel2);
         jpPainel2.setLayout(jpPainel2Layout);

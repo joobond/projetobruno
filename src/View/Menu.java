@@ -57,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbFuncionario.setText("Colocar Receita");
+        jbFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/botão Receita.png"))); // NOI18N
         jbFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbFuncionarioActionPerformed(evt);
