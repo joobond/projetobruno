@@ -112,6 +112,7 @@ public class FuncionarioDAO {
             f.setData_nascimento(rs.getString("data_nascimento"));
             f.setTelefone(rs.getInt("telefone"));
             f.setEmail(rs.getString("email"));
+            f.setSenha(rs.getString("senha"));
             retorno.add(f);
         }
         return retorno;

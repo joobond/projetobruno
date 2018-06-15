@@ -5,7 +5,6 @@
  */
 package View;
 
-
 import DAO.FuncionarioDAO;
 import Model.FuncionarioModel;
 import javax.swing.JOptionPane;
@@ -150,19 +149,20 @@ public class Login extends javax.swing.JFrame {
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         boolean autenticacao = false;
         FuncionarioDAO funcDAO = new FuncionarioDAO();
-        
+
         for (FuncionarioModel funcionario : funcDAO.obterTodos()) {
-            if (funcionario.getEmail().equals(jtfUser.getText()) && funcionario.getSenha().equals(jpfSenha.getText())) {
+            if (funcionario.getEmail().equals(jtfUser.getText()) &&
+                    funcionario.getSenha().equals(jpfSenha.getText())) {
                 autenticacao = true;
+                new Menu(funcionario).setVisible(true);
+                this.dispose();
+                System.out.println("teste");
             }
         }
-        if (autenticacao == true) {
-            new Menu().setVisible(true);
-            this.dispose();
-        }else{
+        if (autenticacao == false) {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        } 
+
     }//GEN-LAST:event_jbEntrarActionPerformed
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed

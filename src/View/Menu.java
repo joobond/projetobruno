@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.FuncionarioModel;
 import javax.swing.JOptionPane;
 
 
@@ -22,6 +23,12 @@ public class Menu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public Menu(FuncionarioModel f) {
+        initComponents();        
+        this.setLocationRelativeTo(null);
+        jlUser.setText(f.getNome_completo());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +46,7 @@ public class Menu extends javax.swing.JFrame {
         jbRelatorio = new javax.swing.JButton();
         jpPainel2 = new javax.swing.JPanel();
         jlLanchonet = new javax.swing.JLabel();
+        jlUser = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmSair = new javax.swing.JMenu();
@@ -100,6 +108,14 @@ public class Menu extends javax.swing.JFrame {
         jlLanchonet.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
         jlLanchonet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lanchonet.png"))); // NOI18N
 
+        jlUser.setForeground(new java.awt.Color(255, 255, 255));
+        jlUser.setText("Usuário");
+        jlUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlUserMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPainel2Layout = new javax.swing.GroupLayout(jpPainel2);
         jpPainel2.setLayout(jpPainel2Layout);
         jpPainel2Layout.setHorizontalGroup(
@@ -107,13 +123,17 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpPainel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlLanchonet, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlUser)
+                .addContainerGap())
         );
         jpPainel2Layout.setVerticalGroup(
             jpPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPainel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jlLanchonet, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlUser)
+                    .addComponent(jlLanchonet, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -165,6 +185,14 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbFuncionarioActionPerformed
 
+    private void jlUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlUserMouseClicked
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja deslogar?");
+        if (resp == JOptionPane.YES_OPTION) {
+            new Login().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jlUserMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -209,6 +237,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jbRelatorio;
     private javax.swing.JButton jbRelatorio1;
     private javax.swing.JLabel jlLanchonet;
+    private javax.swing.JLabel jlUser;
     private javax.swing.JMenu jmSair;
     private javax.swing.JPanel jpPainel1;
     private javax.swing.JPanel jpPainel2;
