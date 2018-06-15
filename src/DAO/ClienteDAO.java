@@ -55,6 +55,40 @@ public class ClienteDAO {
         }
     }
     
+    public ArrayList<ClienteModel> obterPorNome(String nome) {
+        try {
+            String sql = "SELECT * FROM clientes WHERE nome_completo like ?";
+            Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, "%" + nome + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            return montaCliente(rs);
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao buscar o cliente " + nome);
+            return null;
+        }
+    }
+
+    public ArrayList<ClienteModel> obterCPf(String cpf) {
+        try {
+            String sql = "SELECT * FROM clientes WHERE cpf = ?";
+            Connection conn = conexãoSingleton.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            return montaCliente(rs);
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+            System.out.println("Erro ao buscar o cliente com CPF: " + cpf);
+            return null;
+        }
+    }
+    
     public ClienteModel obterPorPK(int pk){
         try {
             String sql = "SELECT * FROM clientes WHERE id = ?";
