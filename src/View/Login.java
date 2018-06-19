@@ -156,7 +156,6 @@ public class Login extends javax.swing.JFrame {
                 autenticacao = true;
                 new Menu(funcionario).setVisible(true);
                 this.dispose();
-                System.out.println("teste");
             }
         }
         if (autenticacao == false) {

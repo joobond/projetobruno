@@ -7,8 +7,6 @@ package View;
 
 import DAO.ClienteDAO;
 import Model.ClienteModel;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,7 +68,6 @@ public class Cliente extends javax.swing.JFrame {
         jftfDataNasc.setText(c.getData_nascimento());
         jtfPontos.setText(Integer.toString(c.getPontos()));
         jftfTelefone.setText((Integer.toString(c.getTelefone())));
-        jftfDataNasc.setText(c.getData_nascimento());
         
     }
 

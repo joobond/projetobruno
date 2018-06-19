@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 
+    
+    FuncionarioModel func;
     /**
      * Creates new form Menu
      */
@@ -27,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();        
         this.setLocationRelativeTo(null);
         jlUser.setText(f.getNome_completo());
+        func = f;
     }
     
     /**
@@ -73,6 +76,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/botão Produto.png"))); // NOI18N
+        jbProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbProdutoActionPerformed(evt);
+            }
+        });
 
         jbRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/botão Relatório.png"))); // NOI18N
 
@@ -192,6 +200,10 @@ public class Menu extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jlUserMouseClicked
+
+    private void jbProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProdutoActionPerformed
+      new Produto(func).setVisible(true);
+    }//GEN-LAST:event_jbProdutoActionPerformed
 
     /**
      * @param args the command line arguments

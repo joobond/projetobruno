@@ -18,6 +18,10 @@ public class ProdutoModel {
     private int quantidade;
     private float valor;
     private boolean atividade;
+    
+    private int idCategoria;
+    private int idReceita;
+    private int idFuncionario;
 
     public int getId() {
         return id;
@@ -65,6 +69,30 @@ public class ProdutoModel {
 
     public void setAtividade(boolean atividade) {
         this.atividade = atividade;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public int getIdReceita() {
+        return idReceita;
+    }
+
+    public void setIdReceita(int idReceita) {
+        this.idReceita = idReceita;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
     
     @Override

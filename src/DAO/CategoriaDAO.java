@@ -6,7 +6,6 @@
 package DAO;
 
 import Model.CategoriaModel;
-import Model.ClienteModel;
 import Util.conexãoSingleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -110,6 +109,20 @@ public class CategoriaDAO {
         }
     }
 
+    public int obterPK(String nome) throws SQLException {
+        int pk = 0;
+
+        String sql = "SELECT id FROM categorias where nome = ?";
+        Connection conn = conexãoSingleton.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, nome);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            pk = rs.getInt("id");
+        }
+        return pk;
+    }
+
     public boolean inativar(int pk) {
         try {
             String sql = "UPDATE categorias SET atividade = 0 WHERE id = ?";
@@ -142,11 +155,11 @@ public class CategoriaDAO {
         }
         return retorno;
     }
-    
-    public void atualizar(CategoriaModel c) {
-       String sql = "UPDATE categorias SET nome=?,atividade=? WHERE id=?";
 
-       try {
+    public void atualizar(CategoriaModel c) {
+        String sql = "UPDATE categorias SET nome=?,atividade=? WHERE id=?";
+
+        try {
             Connection conn = conexãoSingleton.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -159,6 +172,5 @@ public class CategoriaDAO {
             ex.getStackTrace();
             System.out.println("Erro ao atualizar categoria.");
         }
-   }
+    }
 }
-

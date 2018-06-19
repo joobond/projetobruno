@@ -17,9 +17,10 @@ import javax.swing.table.DefaultTableModel;
  * @author ecles
  */
 public class NovaReceita extends javax.swing.JFrame {
+
     IngredienteController controller;
     ReceitaController receitaController;
-    
+
     /**
      * Creates new form NovaCategoria
      */
@@ -27,59 +28,61 @@ public class NovaReceita extends javax.swing.JFrame {
         initComponents();
         this.controller = new IngredienteController();
         this.receitaController = new ReceitaController();
+        this.setLocationRelativeTo(null);
     }
-    
+
     public void buscarIngredientes() {
-        for(IngredienteModel i : this.controller.buscarIngredientes()) {
-            String ing = "("+i.getId()+")" + " -> " + i.getNome();
+        for (IngredienteModel i : this.controller.buscarIngredientes()) {
+            String ing = "(" + i.getId() + ")" + " -> " + i.getNome();
             cbIngredientes.addItem(ing);
-        }        
+        }
     }
-    
+
     public void populateTable(IngredienteModel i) {
         DefaultTableModel tb = (DefaultTableModel) tbIngredientes.getModel();
         Object[] values = {i.getId(), i.getNome(), txtQtd.getText()};
         tb.addRow(values);
     }
-    
+
     public void removeSelectedRow() {
         DefaultTableModel tb = (DefaultTableModel) tbIngredientes.getModel();
         int row = tbIngredientes.getSelectedRow();
-        if(row > -1)
+        if (row > -1) {
             tb.removeRow(row);
-        else
+        } else {
             System.out.println("Selecione uma linha");
+        }
     }
-    
+
     public void saveIngredientes(String receitaNome) {
         ArrayList<IngredienteModel> ingredientes = new ArrayList<>();
-        
+
         int linhas = tbIngredientes.getRowCount();
-        if(receitaNome.isEmpty())
-            JOptionPane.showMessageDialog(null,"Nome de receita necessário!");
-        else {
-            if(linhas < 1)
+        if (receitaNome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome de receita necessário!");
+        } else {
+            if (linhas < 1) {
                 JOptionPane.showMessageDialog(null, "Não pode finalizar sem ingredientes!");
-            else {
-                for(int i = 0; i < linhas; i++) {
+            } else {
+                for (int i = 0; i < linhas; i++) {
                     int idIngrediente = Integer.parseInt(tbIngredientes.getValueAt(i, 0).toString());
                     float quantidade = Float.parseFloat(tbIngredientes.getValueAt(i, 2).toString());
                     IngredienteModel ingrediente = new IngredienteModel();
                     ingrediente.setId(idIngrediente);
                     ingrediente.setQuantidade(quantidade);
-                    
+
                     ingredientes.add(ingrediente);
                 }
-                
-                if(this.receitaController.addReceita(receitaNome, ingredientes)) {
+
+                if (this.receitaController.addReceita(receitaNome, ingredientes)) {
                     JOptionPane.showMessageDialog(null, "Receita cadastrada!");
                     this.dispose();
-                }                    
-                else
+                } else {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar receita");
+                }
             }
         }
-        
+
     }
 
     /**
@@ -126,14 +129,14 @@ public class NovaReceita extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(0, 88, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
 
         jLabel1.setText("Nome da Receita:");
@@ -276,9 +279,14 @@ public class NovaReceita extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         IngredienteModel i = this.controller.findIngrediente(cbIngredientes.getSelectedItem().toString());
-        this.populateTable(i);
-        txtQtd.setText("");
+        if (txtQtd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Você precisa inserir a quantidade de ingredientes!","Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            this.populateTable(i);
+            txtQtd.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
